@@ -10,7 +10,7 @@ class SearchResults extends React.Component {
         return (
             <div className="SearchResults">
                 {this.props.imageResults.map((result) => {
-                    return <img src={result.images.fixed_width.url}/>
+                    return <img src={result.images.fixed_width.url} key={result.id} alt={result.title}/>
                 } )}
             </div>
           );

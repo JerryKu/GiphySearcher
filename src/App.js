@@ -13,14 +13,14 @@ class App extends React.Component {
     this.state = {
       currentSearch: "",
       imageResults: [],
-      imageOffset: 15
+      imageOffset: 17
     }
     this.onSearch = this.onSearch.bind(this);
     this.onLoadMore = this.onLoadMore.bind(this);
   }
 
   componentDidMount() {
-    axios.get('http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T')
+    axios.get('http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16')
     .then((response) => {
         this.setState({
             imageResults: response.data.data
@@ -29,22 +29,30 @@ class App extends React.Component {
   }
 
   onSearch(searchTerm) {
-    axios.get('http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=15&q=' + searchTerm)
+    axios.get('http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&q=' + searchTerm)
     .then((response)=> {
       this.setState({
           currentSearch: searchTerm,
-          imageResults: response.data.data
-      })
+          imageResults: response.data.data,
+          imageOffset: 17
+      });
     })
   }
 
   onLoadMore(){
-    axios.get('http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=15&offset=' +
+    let url;
+    if(this.state.currentSearch === ""){
+      url = 'http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
+      this.state.imageOffset;
+    }else{
+      url = 'http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
       this.state.imageOffset +
-     '&q=' + this.state.currentSearch)
+     '&q=' + this.state.currentSearch;
+    }
+    axios.get(url)
     .then((response)=> {
       let currentResults = this.state.imageResults;
-      let imageOffset = this.state.imageOffset + 15;
+      let imageOffset = this.state.imageOffset + 16;
       currentResults = currentResults.concat(response.data.data)
       this.setState({
           imageResults: currentResults,
