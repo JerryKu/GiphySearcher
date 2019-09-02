@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "35e6e9041b1e80f8714205812e46be31",
+    "revision": "59de2d1d508e7ede103979946831a0ba",
     "url": "/GiphySearcher/index.html"
   },
   {
-    "revision": "67cd598d98d2e2cbe7a1",
+    "revision": "1a8461d9e2963cc9e239",
     "url": "/GiphySearcher/static/css/main.e26088c6.chunk.css"
   },
   {
-    "revision": "e526ff92eb995c47bc48",
-    "url": "/GiphySearcher/static/js/2.5a7001e0.chunk.js"
+    "revision": "5ce37991c82ec1ffd976",
+    "url": "/GiphySearcher/static/js/2.310bea5a.chunk.js"
   },
   {
-    "revision": "67cd598d98d2e2cbe7a1",
-    "url": "/GiphySearcher/static/js/main.d1e879ed.chunk.js"
+    "revision": "1a8461d9e2963cc9e239",
+    "url": "/GiphySearcher/static/js/main.8a0b4381.chunk.js"
   },
   {
     "revision": "4c5f24fb037d1c28ed27",
