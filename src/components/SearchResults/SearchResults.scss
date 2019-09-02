@@ -1,0 +1,45 @@
+.SearchResults {
+    margin: 0 auto;
+    padding: 0 1em;
+    box-sizing: border-box;
+
+    .flex-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        @media (min-width: $break-medium) {
+            align-items: flex-end;
+        }
+    }
+
+    .gif-container {
+        width: 87.5%;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid gray;
+        box-sizing: border-box;
+
+        @media (min-width: $break-medium) {
+            width: 50%;
+        }
+
+        @media (min-width: $break-large) {
+            width: 25%
+        }
+    }
+
+    .gif-preview {
+        width: 100%;
+        height: 100%;
+        padding: 1em;
+        box-sizing: border-box;
+        max-height: 300px;
+    }
+    
+    .gif-title {
+        padding: 0 1rem;
+        font-size: 17px;
+    }
+}

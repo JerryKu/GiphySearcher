@@ -1,7 +1,8 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
+import ImageModal from './components/ImageModal/ImageModal';
 
 import axios from 'axios';
 
@@ -13,10 +14,9 @@ class App extends React.Component {
     this.state = {
       currentSearch: "",
       imageResults: [],
-      imageOffset: 17
+      imageOffset: 17,
+      selectedImage: {}
     }
-    this.onSearch = this.onSearch.bind(this);
-    this.onLoadMore = this.onLoadMore.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +28,14 @@ class App extends React.Component {
     });
   }
 
-  onSearch(searchTerm) {
-    axios.get('http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&q=' + searchTerm)
+  onSearch = (searchTerm) => {
+    let url;
+    if(searchTerm === "") {
+      url = 'http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16'
+    } else {
+      url = 'http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&q=' + searchTerm
+    }
+    axios.get(url)
     .then((response)=> {
       this.setState({
           currentSearch: searchTerm,
@@ -39,7 +45,7 @@ class App extends React.Component {
     })
   }
 
-  onLoadMore(){
+  onLoadMore = () => {
     let url;
     if(this.state.currentSearch === ""){
       url = 'http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
@@ -61,13 +67,31 @@ class App extends React.Component {
     })
   }
 
+  onOpenModal = (selectedImage) => {
+    document.body.classList.add('modal-open');
+    this.setState({
+      selectedImage: selectedImage
+    })
+  }
+
+  onCloseModal = () => {
+    document.body.classList.remove('modal-open');
+    this.setState({
+      selectedImage: {}
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
+        <div className="nav-bar">
+        <span className="logo"><strong>Jerphy</strong></span>
         <SearchBar onSearch={this.onSearch}/>
-        <SearchResults imageResults={this.state.imageResults}/>
-        <input type="button" value="Load More" onClick={this.onLoadMore}></input>
+        </div>
+        <SearchResults imageResults={this.state.imageResults} onOpenModal={this.onOpenModal}/>
+        <input className="load-more" type="button" value="Load More" onClick={this.onLoadMore}></input>
+        <ImageModal image={this.state.selectedImage} onCloseModal={this.onCloseModal}/>
         </header>
       </div>
     );

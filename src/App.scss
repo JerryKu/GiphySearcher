@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+  box-sizing: border-box;
+  background-color: #282c34;
+
+  .App-header {
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    padding-bottom: 2em;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+
+  .nav-bar {
+    text-align: left;
+    width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  .logo {
+    font-size: 32px;
+  }
+
+  .load-more {
+    background: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+  }
+}
+
+

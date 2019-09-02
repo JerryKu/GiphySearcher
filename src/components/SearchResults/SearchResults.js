@@ -9,9 +9,16 @@ class SearchResults extends React.Component {
     render(){
         return (
             <div className="SearchResults">
-                {this.props.imageResults.map((result) => {
-                    return <img src={result.images.fixed_width.url} key={result.id} alt={result.title}/>
-                } )}
+                <div className="flex-wrapper">
+                    {this.props.imageResults.map((result) => {
+                        return (
+                            <div className="gif-container">
+                                <img className="gif-preview" src={result.images.preview_gif.url} key={result.id} alt={result.title} onClick={()=>{this.props.onOpenModal(result)}}/>
+                                {result.title ? <div className="gif-title">{result.title}</div> : <div>untitled</div>}
+                            </div>
+                        )
+                    } )}
+                </div>
             </div>
           );
     }
