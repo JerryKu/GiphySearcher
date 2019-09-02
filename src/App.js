@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16')
+    axios.get('https://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16')
     .then((response) => {
         this.setState({
             imageResults: response.data.data
@@ -31,9 +31,9 @@ class App extends React.Component {
   onSearch = (searchTerm) => {
     let url;
     if(searchTerm === "") {
-      url = 'http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16'
+      url = 'https://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16'
     } else {
-      url = 'http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&q=' + searchTerm
+      url = 'https://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&q=' + searchTerm
     }
     axios.get(url)
     .then((response)=> {
@@ -48,10 +48,10 @@ class App extends React.Component {
   onLoadMore = () => {
     let url;
     if(this.state.currentSearch === ""){
-      url = 'http://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
+      url = 'https://api.giphy.com/v1/gifs/trending?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
       this.state.imageOffset;
     }else{
-      url = 'http://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
+      url = 'https://api.giphy.com/v1/gifs/search?api_key=e5IHMLQpsdQwrtrQyJiDibOYStCTgm3T&limit=16&offset=' +
       this.state.imageOffset +
      '&q=' + this.state.currentSearch;
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { thisExpression } from '@babel/types';
 
 class SearchBar extends React.Component {
     constructor(props) {
